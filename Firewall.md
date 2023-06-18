@@ -79,19 +79,20 @@ fw tab -f -t vpn_routing -u
 fw tab -s -t userc_users 
 ``
 ## clear all translated entries
-``
+```
 fw tab -t xlate -x 
-``
+```
 ## clear local firewall policy
-``
+```
 fw unloadlocal    
 
-``
+```
 
 ## trace the packet flow to/from the specified host
 ``
 fw monitor -e "accept host(10.1.1.10);"    
 ``
 ##  Check reason of your packet being dropped
-``
+```
 fw ctl zdebug + drop | grep 'x.x.x.x\|y.y.y.y'   
+```
