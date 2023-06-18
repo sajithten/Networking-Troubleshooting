@@ -1,0 +1,13 @@
+- sh int <interface name>  sh int port-channel 1  - To check status of an Interface:
+- sh cdp nei  - To check all neighbour devices:
+- show cdp nei | i POWwdSINhyder03 - to check particular neighboring devices
+- show cdp nei | i sec CI -
+- show int desc | i /1/14 | Po14
+- To check which device connected to a particular interface(for eg: fa 0/23):  sh cdp nei <interface name> detail
+- sh int description - To check Interface details & status
+- To traceroute a particuler reachable AP which is connected to a switch for instance, gehwdefrbucmc27
+    
+    copy CI of particular AP paste on NetBrain >> copy the switch CI (GEHsgEFRbucMC26) which connected to gehwdefrbucmc27 >> type in Luciano ssh -l 503287061 GEHsgEFRbucMC26 >> sh cdp nei >> but the particular AP not connected to the switch in Gi7/2 >> sh int des  or sh cdp nei Gi7/2 detail >> Gi 7/2 connected to GEHsgEFRbucVO91 >> login to GEHsgEFRbucVO91 or using it’s Management add >> shows “could not resolve hostname GEHsgEFRbucVO91 ..” >> copied it’s management add and login ssh -l 503287061 3.248.23.248 >> shows “permission denied” >> g GEHsgEFRbucVO91  >> no result >> nslookup GEHsgEFRbucVO91  >> nslookup 3.248.23.248 >> in both nslookup shows after 2 address below “server can’t find..” >> p GEHsgEFRbucVO91  >> Says “unknown host” >> p gehwdefrbucmc27  >> shows “ PING geh..com (3.213.199.20) >> g 3.213.199.2 >> copied gehsgefrbucro90 >> p gehsgefrbucro90 >> shows “ 0% packet loss” >> ssh -l 50328061 gehsgefrbucro90 >> sh ip arp 3.213.199.20 , which is IP add of gehwdefrbucmc27 >> copy mad-add and sh mad add add 00a6.ca4c.3cb8 >> note down port channel number and sh etherchannel summary >> Po1 is connect to Te5/4(P) & Te5/5(P) >> sh run int Te5/4 sh run int Te5/5 >> sh cdp nei Te5/4 detail >> copy device ID nd login after exit >> ssh -l 503287061 GEHsgEFRbucR091.gdn.ge.com >> yes >> sh mac add add 00a6.ca4c.3cb8 >> copy interface name and  sh run int Te4/6 >> shows “description Int_Mon *** To GEHsgEFRbucMC26 >> This shows gehwdefrbucmc27 Is connected to GEHsgEFRbucMC26 only but when before cdp command did It was showing like this AP connected to GEHsgEFRbucVO91, but particular mad add coming from GEHsgEFRbucMC26 only >> ssh -l 503287061 GEHsgEFRbucMC26 >> sh mad add add 00a6.ca4c.3cb8 >>port Gi7/2 >> sh run int Gi7/2 >> connected to GEHsgEFRbucVO91 >> ssh -l 503287061 GEHsgEFRbucR091 >> sh cdp nei >> ...”There’s a concept of mesh also...” 
+    
+- To get the Serial Number and Module details of a switch: sh inventory
+- sh mac address-table int Ethernet104/1/1 - To View mac address seen on a specific interface in switch
