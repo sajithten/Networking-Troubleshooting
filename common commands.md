@@ -1,4 +1,4 @@
-The following commands create a message-of-the-day banner and enable its display:
+## The following commands create a message-of-the-day banner and enable its display:
 ```
 Router(config)# banner motd  # All routers will be rebooted at Sunday 10AM #
 Router(config)# motd-banner
