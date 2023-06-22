@@ -114,7 +114,7 @@ GigabitEthernet0/7 is down, line protocol is down (err-disabled)
 To recover a port that is in an Errdisable state, manual intervention is required, and the administrator must access the switch and configure the specific port with 'shutdown' followed by the 'no shutdown' command. This command sequence will enable the port again, however, if the problem persists expect to find the port in Errdisable state again soon.
 
 ---
-
+```
 show interface status err-disabled
 
 ```
