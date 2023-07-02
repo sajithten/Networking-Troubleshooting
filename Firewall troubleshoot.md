@@ -9,18 +9,23 @@ Another way is, go to the firewall nd put a packet capture and see traffic hitti
 5. but we don’t have any proof to say issue on user side, in that case we go for packet capture with wireshark either dest or source server accordingly (ref GEINC11269981, packet capture of destination)
 ![image](https://github.com/sajithten/Networking-Troubleshooting/assets/110303586/64f20d9d-5ed2-411c-a33c-f8655e0aeef1)
 GEINC11269981 this captured on destination server, basically we look for any Reset Events, could see RST events from the destination that was going out, here traffic is reaching to destination(i.e ge firewall is allowing traffic) & traffic is resetting from destination end, so need to be checked in the destination firewall (for windows system: windows firewall, for Linux system: IP table)
-6.for Palo Alto logs not visible on splunk, we need to login to panorama >Monitor > traffic > under search give > (addr in <ip>) (addr in <ip>)
+
+6. for Palo Alto logs not visible on splunk, we need to login to panorama >Monitor > traffic > under search give > (addr in <ip>) (addr in <ip>)
 ![image](https://github.com/sajithten/Networking-Troubleshooting/assets/110303586/e9a68027-8c15-4968-bb1d-118a9cda2804)
+
 7. sometimes traffic goes through multiple firewalls, we ask user to raise FRA, still traffic will be blocked in the next firewall, again we ask user to raise FRA
-8. In the case of Public URL, it won’t pass through firewall, public url like all the internet access, it will go through PITC proxy i.e, plug proxy setup, 
-we need to nslookup the url, if not resolving then move case to Proxy team
-9. when a case where url not be resolved, and url not going through the proxy as well, one possibility could be url will exit from the cloud internet gateway itself directly, it wont pass through firewall.
-other possibility is, do nslookup url, it will resolve, and go cmd of our laptop and check routing table netstat -nr , we’ll see IP of url in our laptop routing table
+    
+8. In the case of Public URL, it won’t pass through firewall, public url like all the internet access, it will go through PITC proxy i.e, plug proxy setup, we need to nslookup the url, if not resolving then move case to Proxy team
+    
+9. when a case where url not be resolved, and url not going through the proxy as well, one possibility could be url will exit from the cloud internet gateway itself directly, it wont pass through firewall.other possibility is, do nslookup url, it will resolve, and go cmd of our laptop and check routing table netstat -nr , we’ll see IP of url in our laptop routing table
+
 ![image](https://github.com/sajithten/Networking-Troubleshooting/assets/110303586/8feee03d-7d7f-46ed-ad3c-027017caacb2)
+
 netstat -nr , routing table of her computer, 1st entry default route points to GE bcs computer is on F5 vpn, 2nd entry is the backup default route which point to internet, other entries 13.xxx 52.xxx 52.120.xx points towards house router 192.168.0.1 so that is MSteams local breakout that is how her MSteams traffic from her laptop is going straight to the internet and not coming through the VPN
 other possibility is , there is PAC file [corp.setpac.ge.com/pac.pac?debug=YES&ip=10.172.121.66](http://corp.setpac.ge.com/pac.pac?debug=YES&ip=10.172.121.66) , change ip to the user’s ip to get user’s PAC file. there we get the definition for it, we could find here it as well
 
 other possibility will be something with DMZ server
+
 10. some servers are based behind Vault firewall, aviation vault basically, lot of restrictions for traffic, when we get splunk logs with vault firewall, we route the case to vault team
 11. If we not get any logs, then sometimes there would be route missing when user trying to initiate traffic and that not reaching to firewall, get netstat -nr from user machine and seen if route is present or not.
 12. in 3PR Firewalls Natting happens especially 205.1.173.x range is very common for 3PR
