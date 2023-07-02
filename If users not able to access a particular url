@@ -1,0 +1,7 @@
+when are u facing issue?
+
+get destination url - check ns lookup - if not resolved - need to move to proxy team, if it is resolving need to ask how many user impacted, take 1 ip address which is not happening and take  ip address check on splunk, if firewall is blocking the traffic then ask SM to move ticket to security team
+
+If url resolving then take ip address, put it in netbrain and check switch if flapping or not
+
+if dest url not reachable from user laptop for eg 3.59.237.45:8585, then check if user able to telnet to destinaton on port 443, if yes, then it need to be check by application team, because it is already permitted in firewall
